@@ -1,0 +1,28 @@
+<div class="login-container">
+    <mat-card class="login-card">
+        <mat-card-header>
+            <div mat-card-avatar class="login-header-image">
+                <mat-icon>recycling</mat-icon>
+            </div>
+            <mat-card-title>Sistema de Reciclagem</mat-card-title>
+            <mat-card-subtitle>Faça login para continuar</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+                <input class="input-form" matInput formControlName="username" required placeholder="Digite o usuário ">
+
+                <input class="input-form" matInput type="password" formControlName="password" required
+                    placeholder="Digite a  senha">
+
+                <button  type="submit" class="botao-primario"
+                    [disabled]="loginForm.invalid || (isLoading$ | async)">
+                    <mat-spinner *ngIf="isLoading$ | async" diameter="20"></mat-spinner>
+                    <span *ngIf="!(isLoading$ | async)">Entrar</span>
+                </button>
+
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

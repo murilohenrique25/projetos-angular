@@ -1,0 +1,107 @@
+<div class="dashboard">
+    <h1>Dashboard</h1>
+    <p class="subtitle">Visão geral do sistema</p>
+
+    <div class="metrics-grid">
+        <mat-card class="metric-card">
+            <div class="metric-content">
+                <mat-icon color="primary">restaurant_menu</mat-icon>
+                <div class="metric-info">
+                    <h3>{{metrics?.totalProdutos || 0}}</h3>
+                    <p>Total de Produtos</p>
+                </div>
+            </div>
+        </mat-card>
+
+        <mat-card class="metric-card">
+            <div class="metric-content">
+                <mat-icon color="accent">local_offer</mat-icon>
+                <div class="metric-info">
+                    <h3>{{metrics?.produtosPromocao || 0}}</h3>
+                    <p>Em Promoção</p>
+                </div>
+            </div>
+        </mat-card>
+
+        <mat-card class="metric-card">
+            <div class="metric-content">
+                <mat-icon color="warn">confirmation_number</mat-icon>
+                <div class="metric-info">
+                    <h3>{{metrics?.cuponsAtivos || 0}}</h3>
+                    <p>Cupons Ativos</p>
+                </div>
+            </div>
+        </mat-card>
+
+        <mat-card class="metric-card">
+            <div class="metric-content">
+                <mat-icon color="primary">shopping_cart</mat-icon>
+                <div class="metric-info">
+                    <h3>{{metrics?.pedidosHoje || 0}}</h3>
+                    <p>Pedidos Hoje</p>
+                </div>
+            </div>
+        </mat-card>
+
+        <mat-card class="metric-card">
+            <div class="metric-content">
+                <mat-icon color="accent">attach_money</mat-icon>
+                <div class="metric-info">
+                    <h3>R$ {{(metrics?.vendasHoje || 0).toFixed(2)}}</h3>
+                    <p>Vendas Hoje</p>
+                </div>
+            </div>
+        </mat-card>
+
+        <mat-card class="metric-card">
+            <div class="metric-content">
+                <mat-icon color="warn">trending_up</mat-icon>
+                <div class="metric-info">
+                    <h3>R$ {{(metrics?.ticketMedio || 0).toFixed(2)}}</h3>
+                    <p>Ticket Médio</p>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+
+    <div class="charts-section">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Vendas dos Últimos Dias</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="chart-placeholder">
+                    <mat-icon>show_chart</mat-icon>
+                    <p>Gráfico de vendas seria exibido aqui</p>
+                    <small>Integração com Chart.js ou ng2-charts</small>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div class="recent-orders">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Pedidos Recentes</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="orders-list">
+                    <div class="order-item" *ngFor="let pedido of recentOrders">
+                        <div class="order-info">
+                            <strong>#{{pedido.id}}</strong>
+                            <span>{{pedido.nomeCliente}}</span>
+                        </div>
+                        <div class="order-status">
+                            <span [class]="'status-badge status-' + pedido.status.toLowerCase()">
+                                {{getStatusText(pedido.status)}}
+                            </span>
+                        </div>
+                        <div class="order-total">
+                            R$ {{pedido.total.toFixed(2)}}
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

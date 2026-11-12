@@ -1,0 +1,23 @@
+.sidebar {
+    width: 280px;
+    height: 100vh;
+    background: white;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-header {
+    height: 64px;
+}
+
+.active-link {
+    background-color: rgba(63, 81, 181, 0.12) !important;
+    color: #3f51b5 !important;
+}
+
+mat-list-item {
+    cursor: pointer;
+}
+
+mat-list-item:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}

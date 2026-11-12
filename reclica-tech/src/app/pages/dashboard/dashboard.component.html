@@ -1,0 +1,86 @@
+<app-navigation></app-navigation>
+<div class="dashboard-container">
+    <div class="header">
+        <h2>Dashboard</h2>
+        <p class="current-date">Data: {{ currentDate | date:'dd/MM/yyyy' }}</p>
+    </div>
+
+    <div *ngIf="isLoading" class="loading-container">
+        <mat-spinner></mat-spinner>
+    </div>
+
+    <div *ngIf="!isLoading" class="dashboard-content">
+        <mat-grid-list cols="2" rowHeight="200px" gutterSize="16px">
+            <mat-grid-tile>
+                <mat-card class="dashboard-card green">
+                    <mat-card-content>
+                        <div class="card-icon">
+                            <mat-icon>recycling</mat-icon>
+                        </div>
+                        <div class="card-content">
+                            <h3>Recicláveis Comprados</h3>
+                            <p class="card-value">{{ dashboardData.recycledMaterialsQuantity }} Kg</p>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-card class="dashboard-card blue">
+                    <mat-card-content>
+                        <div class="card-icon">
+                            <mat-icon>shopping_bag</mat-icon>
+                        </div>
+                        <div class="card-content">
+                            <h3>Compras Realizadas</h3>
+                            <p class="card-value">{{ dashboardData.purchasesQuantity }}</p>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-card class="dashboard-card orange">
+                    <mat-card-content>
+                        <div class="card-icon">
+                            <mat-icon>attach_money</mat-icon>
+                        </div>
+                        <div class="card-content">
+                            <h3>Total Pago em Recicláveis</h3>
+                            <p class="card-value">R$ {{ dashboardData.totalPurchasesValue | number:'1.2-2' }}</p>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-card class="dashboard-card red">
+                    <mat-card-content>
+                        <div class="card-icon">
+                            <mat-icon>receipt_long</mat-icon>
+                        </div>
+                        <div class="card-content">
+                            <h3>Total Despesas</h3>
+                            <p class="card-value">R$ {{ dashboardData.totalExpensesValue | number:'1.2-2' }}</p>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+        <div class="action-buttons">
+            <button mat-raised-button color="primary" (click)="navigateTo('/shopping')" class="action-button">
+                <mat-icon>recycling</mat-icon>
+                Comprar Recicláveis
+            </button>
+            <button mat-raised-button color="accent" (click)="navigateTo('/expenses')" class="action-button">
+                <mat-icon>receipt</mat-icon>
+                Nova Despesa
+            </button>
+            <button mat-raised-button color="warn" (click)="navigateTo('/units')" class="action-button">
+                <mat-icon>straighten</mat-icon>
+                Cadastrar Unidade
+            </button>
+        </div>
+    </div>
+</div>
